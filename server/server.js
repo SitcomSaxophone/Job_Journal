@@ -1,9 +1,11 @@
 //Requirements
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+require('./database-connection');
 
 //Globals
 const app = express();
-const bodyParser = require('body-parser');
 
 //Uses
 app.use(bodyParser.json());
