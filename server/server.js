@@ -10,7 +10,7 @@ const jobRouter = require('./routes/jobs.router');
 
 //Uses
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('build'));
 app.use('/api/jobs', jobRouter);
