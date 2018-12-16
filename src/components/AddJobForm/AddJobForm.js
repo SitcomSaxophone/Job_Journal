@@ -6,6 +6,7 @@ class AddJobForm extends Component {
         jobToAdd: {
             company: '',
             title: '',
+            dateAdded: new Date(),
         }
     }
 
@@ -21,6 +22,13 @@ class AddJobForm extends Component {
     handleAddNewJob = event => {
         event.preventDefault();
         console.log(this.state.jobToAdd);
+        this.setState({
+            jobToAdd: {
+                company: '',
+                title: '',
+                dateAdded: new Date(),
+            }
+        });
     }
 
     render() {
