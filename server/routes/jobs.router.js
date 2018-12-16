@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 const jobSchema = new Schema({
     company: { type: String, required: true },
     title: { type: String, required: true },
-    dateAdded: { type: Date, reqruied: true }
+    dateAdded: { type: Date, required: true }
 })
 
 const Job = mongoose.model('job', jobSchema);
