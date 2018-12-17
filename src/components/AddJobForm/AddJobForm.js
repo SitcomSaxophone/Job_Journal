@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 class AddJobForm extends Component {
 
@@ -11,6 +13,7 @@ class AddJobForm extends Component {
     }
 
     handleChangeFor = property => event => {
+        console.log(event.target.value)
         this.setState({
             jobToAdd: {
                 ...this.state.jobToAdd,
@@ -21,13 +24,22 @@ class AddJobForm extends Component {
 
     handleAddNewJob = event => {
         event.preventDefault();
-        console.log(this.state.jobToAdd);
-        this.setState({
-            jobToAdd: {
-                company: '',
-                title: '',
-                dateAdded: new Date(),
-            }
+        axios({
+            method: 'POST',
+            url: '/api/jobs',
+            data: this.state.jobToAdd
+        })
+        .then(() => {
+            this.setState({
+                jobToAdd: {
+                    company: '',
+                    title: '',
+                    dateAdded: new Date(),
+                }
+            });
+        })
+        .catch(error => {
+            alert('Error making POST to server: ', error);
         });
     }
 
@@ -52,4 +64,8 @@ class AddJobForm extends Component {
     }
 }
 
-export default AddJobForm;
+const mapStateToProps = state => ({
+    jobs: state.jobs,
+})
+
+export default connect(mapStateToProps)(AddJobForm);
