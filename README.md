@@ -1,6 +1,6 @@
 # Job Journal
 
-One Paragraph of project description goes here
+Application allowing users to save jobs to which they have recently applied. 
 
 ## Getting Started
 
@@ -60,7 +60,7 @@ Add additional notes about how to deploy this on a live system -->
 
 * React
 * Node.js
-<!-- * MongoDB -->
+* MongoDB
 * Express
 
 
