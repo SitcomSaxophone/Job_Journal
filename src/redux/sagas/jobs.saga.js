@@ -19,9 +19,19 @@ function* addJob(action) {
     }
 }
 
+function* deleteJob(action) {
+    try {
+        yield call(axios.delete, '/api/jobs', { params: action.payload });
+        yield put({type: 'FETCH_JOBS'});
+    } catch (error) {
+        console.log('Error deleting job: ', error);
+    }
+}
+
 function* jobsSaga() {
     yield takeLatest('FETCH_JOBS', fetchJobs);
     yield takeLatest('ADD_JOB', addJob);
+    yield takeLatest('DELETE_JOB', deleteJob);
 }
 
 export default jobsSaga;
