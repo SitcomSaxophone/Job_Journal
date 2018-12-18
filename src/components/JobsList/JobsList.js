@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import JobItem from '../JobItem/Jobitem';
 
 class JobsList extends Component {
 
@@ -12,7 +13,10 @@ class JobsList extends Component {
             <div>
                 <ul>
                     {this.props.jobs.map(job => (
-                        <li key={job._id}>{job.company} {job.title} {job.dateAdded}</li>
+                       <JobItem
+                        job={job}
+                        key={job._id}
+                       />
                     ))}
                 </ul>
             </div>
