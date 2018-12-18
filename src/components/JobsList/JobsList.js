@@ -5,7 +5,7 @@ import JobItem from '../JobItem/Jobitem';
 class JobsList extends Component {
 
     componentDidMount() {
-        this.props.dispatch({type: 'FETCH_JOBS'});
+        this.props.dispatch({ type: 'FETCH_JOBS' });
     }
 
     render() {
@@ -13,10 +13,10 @@ class JobsList extends Component {
             <div>
                 <ul>
                     {this.props.jobs.map(job => (
-                       <JobItem
-                        job={job}
-                        key={job._id}
-                       />
+                        <JobItem
+                            job={job}
+                            key={job._id}
+                        />
                     ))}
                 </ul>
             </div>

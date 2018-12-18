@@ -20,27 +20,40 @@ const Job = mongoose.model('job', jobSchema);
 router.post('/', (req, res) => {
     let dataFromClient = req.body;
     Job.create(dataFromClient)
-    .then(() => {
-        console.log('POST successful to database');
-        res.sendStatus(201);
-    })
-    .catch(error => {
-        console.log('Error posting query to database: ', error);
-        res.sendStatus(500);
-    });
+        .then(() => {
+            console.log('POST successful to database');
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log('Error posting query to database: ', error);
+            res.sendStatus(500);
+        });
 }); //end POST new job
 
 router.get('/', (req, res) => {
     Job.find({})
-    .then(foundJobs => {
-        console.log('data found', foundJobs);
-        res.send(foundJobs);
-    })
-    .catch(error => {
-        console.log('Error finding data from database: ', error);
-        res.sendStatus(500);
-    });
+        .then(foundJobs => {
+            console.log('data found', foundJobs);
+            res.send(foundJobs);
+        })
+        .catch(error => {
+            console.log('Error finding data from database: ', error);
+            res.sendStatus(500);
+        });
 }) // end GET jobs
+
+router.delete('/', (req, res) => {
+    let jobID = req.query._id;
+    Job.findOneAndDelete({ _id: jobID })
+        .then(() => {
+            console.log('Success making DELETE');
+            res.sendStatus(200);
+        })
+        .catch(error => {
+            console.log('Error making DELETE: ', error);
+            res.sendStatus(500);
+        });
+}) // end DELETE job
 
 
 module.exports = router;
