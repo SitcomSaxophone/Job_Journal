@@ -1,7 +1,8 @@
 const jobs = (state = [], action) => {
-    switch (action) {
+    switch (action.type) {
         case 'SET_JOBS':
-            return [...action.payload];
+            console.log(action.payload);
+            return action.payload;
         default: 
             return state;
     }
