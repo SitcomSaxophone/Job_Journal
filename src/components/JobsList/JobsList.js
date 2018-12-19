@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import JobItem from '../JobItem/Jobitem';
+import JobItem from '../JobItem/JobItem';
 
 class JobsList extends Component {
 

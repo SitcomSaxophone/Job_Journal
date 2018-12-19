@@ -22,10 +22,18 @@ function* addJob(action) {
 function* deleteJob(action) {
     try {
         yield call(axios.delete, '/api/jobs', { params: action.payload });
-        yield console.log(action.payload);
         yield put({ type: 'FETCH_JOBS' });
     } catch (error) {
         console.log('Error deleting job: ', error);
+    }
+}
+
+function* updateFollowUp(action) {
+    try {
+        yield call(axios.put, '/api/jobs', action.payload );
+        yield put({ type: 'FETCH_JOBS' });
+    } catch (error) {
+        console.log('Error making updating followUp: ', error);
     }
 }
 
@@ -33,6 +41,7 @@ function* jobsSaga() {
     yield takeLatest('FETCH_JOBS', fetchJobs);
     yield takeLatest('ADD_JOB', addJob);
     yield takeLatest('DELETE_JOB', deleteJob);
+    yield takeLatest('UPDATE_FOLLOW_UP', updateFollowUp);
 }
 
 export default jobsSaga;
