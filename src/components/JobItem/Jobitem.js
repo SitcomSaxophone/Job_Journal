@@ -3,12 +3,22 @@ import { connect } from 'react-redux';
 
 class JobItem extends Component {
 
+    state = {
+        addNotes: false,
+    }
+
     handleDeleteJob = jobToDelete => () => {
         this.props.dispatch({ type: 'DELETE_JOB', payload: jobToDelete });
     }
 
     handleJobChecked = jobToCheckOff => async event => {
-        this.props.dispatch({type: 'UPDATE_FOLLOW_UP', payload: jobToCheckOff})
+        this.props.dispatch({ type: 'UPDATE_FOLLOW_UP', payload: jobToCheckOff })
+    }
+
+    handleToggleTextArea = textAreaToShow => () => {
+        this.setState({
+            addNotes: true,
+        });
     }
 
     render() {
@@ -32,6 +42,18 @@ class JobItem extends Component {
                         />
                         <label htmlFor="CheckBox">Follow Up Sent?</label>
                     </>}
+                    <br />
+                    {!this.state.addNotes ? (
+                        <>
+                            <input 
+                                type="checkbox" 
+                                defaultChecked={false} 
+                                name="notes" 
+                                onChange={this.handleToggleTextArea(this.props.job)}
+                            />
+                            <label htmlFor="notes">Add Notes</label>
+                        </>
+                    ) : ( <textarea /> )}
                 </li>
                 <br />
             </div>
