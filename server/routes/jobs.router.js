@@ -13,6 +13,7 @@ const jobSchema = new Schema({
     title: { type: String, required: true },
     dateAdded: { type: Date, required: true },
     followUp: { type: Boolean, required: true, default: false },
+    jobNotes: { type: String }
 })
 
 const Job = mongoose.model('job', jobSchema);

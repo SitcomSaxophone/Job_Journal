@@ -21,6 +21,13 @@ class JobItem extends Component {
         });
     }
 
+    handleAddNotes = event => {
+        event.preventDefault();
+        this.setState({
+            addNotes: false,
+        });
+    }
+
     render() {
         return (
             <div>
@@ -43,6 +50,7 @@ class JobItem extends Component {
                         <label htmlFor="CheckBox">Follow Up Sent?</label>
                     </>}
                     <br />
+                    {/* render the checkbox */}
                     {!this.state.addNotes ? (
                         <>
                             <input 
@@ -53,7 +61,13 @@ class JobItem extends Component {
                             />
                             <label htmlFor="notes">Add Notes</label>
                         </>
-                    ) : ( <textarea /> )}
+                    ) : ( 
+                    <>
+                    <form onSubmit={this.handleAddNotes}>
+                        <textarea />
+                        <input type="submit" value="Add Notes"/>
+                    </form>
+                    </>)}
                 </li>
                 <br />
             </div>
